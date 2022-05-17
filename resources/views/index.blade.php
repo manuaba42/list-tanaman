@@ -15,7 +15,9 @@
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalAtap" id="open">Atap</button>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalDinding" id="open">Dinding</button>
-        <button type="button" class="btn btn-info btn-lg" name="atap[]" value="{{$atap->id}}">Lantai</button>
+        <form method="get" action="{{url('list')}}" id="form">
+            <button type="Submit" class="btn btn-info btn-lg" id="arsitektural" name="arsitektural[]" value="3">Lantai</button>
+        </form>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalEst" id="open">Estetika</button>
 
         <form method="get" action="{{url('list')}}" id="form">

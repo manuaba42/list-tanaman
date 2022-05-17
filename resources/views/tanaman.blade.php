@@ -9,9 +9,16 @@
 </head>
 <body>
 	<div class="container">
-		@foreach($users as $tanam)
-			<li>{{$tanam}}</li>
+		@foreach($newData as $data)
+			@foreach($data as $key => $tanaman)
+				<li>{{$tanaman->nama}}</li>
+			@endforeach
+			
 		@endforeach
+
+		<a href="{{ url()->previous() }}">
+			<button type="button" class="btn btn-info btn-lg">Back</button>
+		</a>
 	</div>
 
 </body>

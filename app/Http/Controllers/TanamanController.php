@@ -32,18 +32,37 @@ class TanamanController extends Controller
 
     public function tanaman(Request $request){
 
-        $terms = $request->all();
-        
-        $users[] = DB::table('tb_relasi')->whereIn('id_atap', $terms['atap']),
-                    o->get();
+        $newData = [];
+        $input = $request->all();
 
-        // $users[] = DB::table('tb_relasi')->whereIn('id_dinding', $terms['dinding'])->get();
-        // $users[] = DB::table('tb_relasi')->whereIn('id_estetika', $terms['estetika'])->get();
-       
-        // $users[] =  (array) $users;
-        // dd($arrays);
+        // dd($input);
         
-        return view('tanaman', compact('users'));
+        if(!empty($input['arsitektural'])){
+            $datas[] = Relasi::join('tb_tanaman', 'tb_tanaman.id', '=', 'tb_relasi.id_tanaman')
+                    ->whereIn('id_arsitektural', $input['arsitektural'])->get('tb_tanaman.nama');
+        }
+        if(!empty($input['atap'])){
+            $datas[] = Relasi::join('tb_tanaman', 'tb_tanaman.id', '=', 'tb_relasi.id_tanaman')
+                    ->whereIn('tb_relasi.id_atap', $input['atap'])->get('tb_tanaman.nama');
+        }
+        if(!empty($input['dinding'])){
+            $datas[] = Relasi::join('tb_tanaman', 'tb_tanaman.id', '=', 'tb_relasi.id_tanaman')
+                    ->whereIn('id_dinding', $input['dinding'])->get('tb_tanaman.nama');
+        }
+        if(!empty($input['estetika'])){
+            $datas[] = Relasi::join('tb_tanaman', 'tb_tanaman.id', '=', 'tb_relasi.id_tanaman')
+                    ->whereIn('id_estetika', $input['estetika'])->get('tb_tanaman.nama');
+        }
+
+        if(!empty($datas)){
+            foreach($datas as $data){
+                if(!empty($data[0])){
+                    $newData[] = $data;
+                }
+            }
+        }
+
+        return view('tanaman', compact('newData'));
     }
 
 }

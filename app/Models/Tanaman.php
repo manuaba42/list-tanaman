@@ -38,6 +38,6 @@ class Tanaman extends Model
 
     public function relasi()
     {
-    	return $this->belongsTo(Relasi::class);
+    	return $this->hasOne(Relasi::class);
     }
 }

@@ -14,13 +14,6 @@ use App\Http\Controllers\TanamanController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/tanaman', 'TanamanController@index');
-// Route::get('/test', 'TanamanController@show');
-
 Route::get('/', [TanamanController::class, 'show']);
 Route::get('/list', [TanamanController::class, 'tanaman']);
 
